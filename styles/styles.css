@@ -1,0 +1,124 @@
+:root {
+    --horizontal-margins: 2.4rem;
+    --max-content-width: 50rem;
+    --bg-color-r: 9;
+    --bg-color-g: 18;
+    --bg-color-b: 30;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(var(--bg-color-r), var(--bg-color-g), var(--bg-color-b));
+    margin: 0px;
+    color: rgb(230, 230, 230);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 3rem;
+}
+
+p {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+}
+
+code {
+    border-radius: 0.5rem;
+}
+
+nav {
+    top: 0;
+    position: sticky;
+    z-index: 99;
+    background-color: rgb(var(--bg-color-r), var(--bg-color-g), var(--bg-color-b));
+    width: 100%;
+    max-height: 4rem;
+    padding: var(--horizontal-margins);
+    border-bottom: 2px solid rgb(67, 67, 67);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    color: lightblue;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    text-decoration: underline 2px rgba(255, 255, 255, 0);
+    text-underline-offset: 3px;
+}
+
+a:hover {
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    text-decoration-color: lightblue;
+    text-underline-offset: 1.2px;
+}
+
+.nav-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 3em;
+    width: var(--max-content-width);
+}
+
+.home-link {
+    font-size: 1.5rem;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    text-decoration: underline 2px rgba(255, 255, 255, 0);
+    text-underline-offset: 5px;
+}
+
+.home-link:hover {
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    text-decoration-color: white;
+    text-underline-offset: 2px;
+}
+
+#home-icon {
+    width: 26px;
+    height: 26px;
+    padding-right: 10px;
+}
+
+.nav-link-container {
+    display: flex;
+    justify-content: right;
+    gap: 30px;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    text-underline-offset: 6px;
+
+}
+
+.nav-link:hover {
+    text-decoration-color: white;
+    text-underline-offset: 3px;
+}
+
+.content-container {
+    margin: 2rem var(--horizontal-margins);
+    max-width: var(--max-content-width);
+    width: calc(100% - var(--horizontal-margins) * 2);
+}
