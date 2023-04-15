@@ -24,7 +24,11 @@ h1 {
     font-size: 3rem;
 }
 
-p {
+h2, h3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p, ul {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 1rem;
 }
@@ -46,6 +50,18 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
+}
+
+#navigation {
+    width: 100%;
+}
+
+.tutorial-dropdown {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: absolute;
+    display: none;
+    padding: 2px;
 }
 
 a {
@@ -101,7 +117,9 @@ a:hover {
 .nav-link-container {
     display: flex;
     justify-content: right;
+    align-items: center;
     gap: 30px;
+    /* border: 1px solid greenyellow; */
 }
 
 .nav-link {
@@ -109,13 +127,82 @@ a:hover {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
     text-underline-offset: 6px;
-
+    /* border: 1px solid brown; */
+    height: 100%;
 }
 
 .nav-link:hover {
     text-decoration-color: white;
     text-underline-offset: 3px;
 }
+
+.tutorial-dropdown {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid lightblue; */
+    font-size: 1.2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    text-underline-offset: 6px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 150%;
+    background-color: rgb(9, 18, 30);
+    border: 2px solid rgb(67, 67, 67);
+    border-radius: 10px;
+    box-shadow: 1px 2px 10px black;
+    padding: 50px 10px 10px 10px;
+    top: -10px;
+    z-index: -1;
+}
+
+.tutorial-dropdown:hover .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    animation: fade-in 0.2s ease-in;
+}
+  
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 100;
+    }
+    100% {
+        opacity: 0;
+    }
+
+}
+
+.dropdown-link {
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    text-underline-offset: 6px;
+    /* border: 1px solid brown; */
+    /* height: 100%; */
+    /* line-height: 10px; */
+}
+
+.dropdown-link:hover {
+    text-decoration-color: white;
+    text-underline-offset: 3px;
+}
+
+
 
 .content-container {
     margin: 2rem var(--horizontal-margins);

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/tutorial-page-styles.css">
+
+    <!-- Code block styles provided by highlight.js: https://highlightjs.org/ -->
+    <link rel="stylesheet" title="Atom One Dark" href="../styles/atom-one-dark.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <!-- jQuery minified CDN from https://releases.jquery.com/ -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+    <title>OOP</title>
+</head>
+<body>
+    <div id="navigation"></div>
+    <!-- Script from jQuery to load navbar from external file -->
+    <script>
+        $("#navigation").load("./nav.html");
+    </script>
+
+    <div class="content-container">
+        <h1>OOP</h1>
+        <h2>Introduction</h2>
+        <p>
+            Java was designed as an object oriented programming language 
+            or OOP for short. This way of designing programs is modelled 
+            after the real world. There are a few things common between 
+            objects in code and objects in real life. Take houses for 
+            example. They can have their own attributes, such as the number 
+            of floors, bedrooms, bathrooms, etc. Some of these attributes 
+            can be changed, for example you can renovate your house to include 
+            a second floor, while others are fixed. There are certain things 
+            you can do to a house. For instance, you can clean or repair the 
+            house. There are also things that a house can do. It provides a 
+            space for you to live in and a place for you to cook, eat and 
+            sleep. These are called behaviors. Luckily, all of the things 
+            we have just discussed above can be applied to programming as well, 
+            with some minor differences. Before we make any objects, we need 
+            to define a class. Think of a class as like a blueprint. Just 
+            like a house needs a blueprint before it is built, we need a 
+            class before we construct objects. The advantage of this is that 
+            we can reuse the same blueprint on multiple objects. Let's see 
+            how this is written in code.
+        </p>
+    <pre>
+        <code class="language-java">class House {
+    // attributes
+    private String address;
+    private int floors;
+    private int bedrooms;
+    private int bathrooms;
+    private double squareFeet;
+
+    // no argument constructor
+    public House() {
+        address = "";
+        floors = 1;
+        bedrooms = 2;
+        bathrooms = 1;
+        squareFeet = 1500;
+    }
+
+    // constructor
+    public House(String a, int f, int bdrms, int btrms, double sqft) {
+        address = a;
+        floors = f;
+        bedrooms = bdrms;
+        bathrooms = btrms;
+        squareFeet = sqft;
+    }
+
+    // behaviors
+    public void addFloor() {
+        floors += 1;
+        squareFeet += 1000;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getFloors() {
+        return floors;
+    }
+
+    public int getBedrooms() {
+        return bedrooms;
+    }
+
+    public int getBathrooms() {
+        return bathrooms;
+    }
+
+    public double getSquareFeet() {
+        return squareFeet;
+    }
+}</code>
+    </pre>
+
+    <p>
+        As you can see in the above code sample, the house class contains 
+        attributes and behaviors that are both seen in real world houses. 
+        There are also two special methods called the constructors. As its 
+        name suggests, it helps construct a house object. Take a look at the 
+        following code snippet.
+    </p>
+    <pre>
+        <code class="language-java">House genericHouse = new House();
+House myHouse = new House("123 Example Road", 2, 3, 2, 2000.20);</code>
+    </pre>
+
+    <p>
+        It creates two objects, one named genericHouse and the other named 
+        myHouse. Notice how in initializing the genericHouse variable, we 
+        call the first House constructor (House()). genericHouse now has the 
+        values we set in the previous code snippet. On the other hand, the 
+        myHouse is initialized by calling the overloaded constructor. It sets 
+        the address, floors, bedrooms, bathrooms and square feet of the house, 
+        all in the constructor. Now, we can use dot notation to call the methods 
+        we created. For example:
+    </p>
+
+    <pre>
+        <code class="language-java">House myHouse = new House("123 Example Road", 2, 3, 2, 2000.20);
+System.out.println(myHouse.getFloors());
+System.out.println(myHouse.getSquareFeet());
+myHouse.addFloor();
+System.out.println(myHouse.getFloors());
+System.out.println(myHouse.getSquareFeet());</code>
+    </pre>
+
+    <p>
+        The above code would output:
+    </p>
+
+    <pre>
+        <code class="text">2
+2000.20
+3
+3000.20</code>
+    </pre>
+
+    <p>
+        As you can see, this prints the result of the method call to the getFloors() 
+        and getSquareFeet() methods before and after calling addFloor(). The addFloor() 
+        method adds 1000 square feet and increases the number of floors by one, as shown 
+        in the output.
+    </p>
+
+    <h2>Inheritance</h2>
+
+    <p>
+        Now let's look at a more sophisticated way we can make use of object oriented 
+        programming called inheritance. Just like you inherit your genes from your parents, 
+        classes can also inherit attributes and behaviors from other classes. The parent class 
+        is also called the super class and the child class is called the sub class. Let's see 
+        how this looks in code.
+    </p>
+
+    <pre>
+        <code class="language-java">public class Parent {
+    int age;
+    double weight;
+    double height;
+    String hairColor;
+
+    public Parent(int a, double w, double h, String hc) {
+        age = a;
+        weight = w;
+        height = h;
+        hairColor = hc;
+    }
+
+    public void displayHairColor() {
+        System.out.println(hairColor);
+    }
+}
+
+public class Child extends Parent {
+    public Child(int a, double w, double h, String hc) {
+        super(a, w, h, hc);
+    }
+}</code>
+    </pre>
+
+    <p>
+        As you can see, the class constructor of Child calls its superclass (Parent) constructor.
+    </p>
+    </div>
+</body>
+</html>

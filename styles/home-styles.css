@@ -77,6 +77,8 @@
 .cta-button:hover {
     transform: translateY(-3px);
     transition: all 0.25s ease-out;
+    background-color: rgb(200, 200, 200);
+    color: rgb(var(--bg-color-r), var(--bg-color-g), var(--bg-color-b));
     animation: 2s infinite alternate rgb-transition;
 }
 

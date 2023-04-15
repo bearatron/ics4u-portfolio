@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/tutorial-page-styles.css">
+
+    <!-- Code block styles provided by highlight.js: https://highlightjs.org/ -->
+    <link rel="stylesheet" title="Atom One Dark" href="../styles/atom-one-dark.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <!-- jQuery minified CDN from https://releases.jquery.com/ -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+    <title>ArrayLists</title>
+</head>
+<body>
+    <div id="navigation"></div>
+    <!-- Script from jQuery to load navbar from external file -->
+    <script>
+        $("#navigation").load("./nav.html");
+    </script>
+
+    <div class="content-container">
+        <h1>ArrayLists</h1>
+        <p>
+            Arrays are used to store a collection of data from the same datatype. The 
+            basic declaration and initialization of an array is as follows.
+        </p>
+        <pre>
+            <code class="language-java">int[] sampleArray; // declaration
+sampleArray = new int[10]; // initialization of the array with length 10
+sampleArray = new int[] {5, 8, 2}; // initialization of the array with 3 preset elements
+
+// declaration and initialization in the same line
+int[] sampleArray = new int[10];
+int[] sampleArray = new int[] {5, 8, 2};</code>
+        </pre>
+        <p>
+            Note that int can be replaced with any other datatype and that the length 
+            can be any positive integer. Also note that if you initialize an array by 
+            specifying its length, Java initializes it with default values depending on 
+            the datatype for that array. In this case, line 2 of the above code would 
+            initialize the array with ten elements of 0. For strings, the default value 
+            is null, for booleans it's false, and for floats and doubles, the default 
+            value is 0.0. Once an array is initialized, its datatype and length cannot 
+            be changed.
+        </p>
+        <h2>Iteration</h2>
+        <p>
+            Similar to how we might number our grocery list, Java numbers each element 
+            (or value) in an array, however it starts from 0. That means that if we had 
+            the array [2, 4, 6, 8], the element 2 is at index 0 in the array. A common 
+            operation is iterating through an array to get each element. Let's say we 
+            were given an array of doubles and wanted to figure out the average value 
+            of all the elements inside. We can do this in one of two ways. The first of 
+            which uses a for loop. We can iterate through each index in the array. Take 
+            a look at the code below.
+        </p>
+        <pre><code class="language-java">int[] numArray = [2, 4, 8, 3, 1, 0]
+int sum;
+for (int i = 0; i < numArray; i ++) {
+    sum += numArray[i];
+}
+
+System.out.println((double)sum/numArray.length);</code>
+        </pre>
+        <p>
+            In this example, we initialize an array to store some integers we want to find 
+            the average of and a sum variable to store the sum of these integers. Then, we 
+            iterate through the array using a for loop, adding each element to the variable 
+            that stores the total sum. Lastly, we display the divided number to the console.
+            For loops are not the only ways to iterate through arrays. A simple operation 
+            such as this can be accomplished by using for-each loops. The above for loop 
+            could be replaced with the following.
+        </p>
+
+        <pre><code class="language-java">for (int i : numArray) {
+    sum += i;
+}</code>
+        </pre>
+        <p>
+            As you can see, the for-each loop iterates through the actual elements in the 
+            array, rather than just the indexes.
+        </p>
+
+        <h2>Common Mistake</h2>
+        <p>
+            Although the for-each loop is great for iterating through an array's elements, 
+            you cannot modify the array with them. They are only used for accessing its 
+            values. If you want to modify an array, you must access its index and reassign 
+            the element at that index. An example is shown below.
+        </p>
+
+        <pre><code class="language-java">String[] names = new int[] {“Abe”, “Bob”, “Dave”, “Dan”};
+names[2] = “Carl”;</code>
+        </pre>
+        <p>
+            If you want to replace an array with another array, that can be done with a for loop.
+        </p>
+
+        <pre><code class="language-java">double[] marks = new double[] {90.2, 93.9, 89.7};
+double[] newMarks = new double[] {93.5, 92.3, 95.9};
+
+for (int i = 0; i < marks.length; i ++) {
+	marks[i] = newMarks[i];
+}</code>
+        </pre>
+    </div>
+</body>
+</html>
