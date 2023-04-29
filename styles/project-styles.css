@@ -1,0 +1,26 @@
+.project-card-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.project-card {
+    width: 100%;
+    border: 2px solid rgb(67, 67, 67);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 5%;
+    box-shadow: none;
+    transition: all 0.2s ease-out;
+}
+
+.project-card:hover {
+    box-shadow: 2px 4px 20px black;
+    transform: translateY(-5px);
+    scale: 102%;
+    transition: all 0.2s ease-in;
+}
+
+.project-image {
+    width: 100%;
+    height: auto;
+}

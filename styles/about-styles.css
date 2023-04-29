@@ -1,0 +1,68 @@
+.content-container {
+    /* display: flex;
+    flex-direction: row; */
+    /* border: 1px solid lightblue; */
+}
+
+.bio-card {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#profile-pic {
+    border: 2px solid rgb(67, 67, 67);
+    border-radius: 100px;
+}
+
+#bio-info-container {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    justify-content: space-between;
+    align-items: flex-start;
+    /* border: 1px solid lightblue; */
+}
+
+.info-card-container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 24px;
+    /* border: 1px solid burlywood; */
+}
+
+.info-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.info-icon {
+    /* filter: grayscale(100%); */
+    width: 24px;
+    height: 24px;
+    /* border: 1px solid red; */
+}
+
+#test {
+    /* border: 1px solid burlywood; */
+}
+
+.language-card-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.language-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: -1px 0;
+    align-items: center;
+    gap: 5px;
+    /* border: 1px solid burlywood; */
+}

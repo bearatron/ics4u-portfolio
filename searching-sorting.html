@@ -25,7 +25,330 @@
 
     <div class="content-container">
         <h1>Searching & Sorting</h1>
+        <p>
+            Searching in computer science terms, is the process of finding a 
+            value within an array. Sorting is the process of arranging items 
+            in an array so that they follow some arbitrary order (such as 
+            alphabetically, or least to greatest). In this lesson, we'll take 
+            a look at different searching and sorting algorithms and how fast 
+            they run. The time it takes for an algorithm to run is measured 
+            using big O notation, which is the relationship between the input 
+            size and time it takes for the algorithm to run in the worst case 
+            scenario. This will make more sense as we take a look at the time 
+            complexity of actual searching and sorting algorithms.
+        </p>
+
+        <h2>Linear/sequential search</h2>
         
+        <p>
+            This is by far the simplest search algorithm to understand and 
+            implement. Given an array of values, simply loop through the array 
+            from start to finish until you reach the desired value. Sample code 
+            for searching through an integer array is shown below.
+        </p>
+
+        <pre>
+            <code class="language-java">public static int sequentialSearch(int[] arr, int val) {
+    for (int i = 0; i < arr.length; i ++) {
+        if (arr[i] == val) {
+    return i;
+    }
+}
+    return -1;
+}</code>
+        </pre>
+
+        <p>
+            This algorithm runs in O(n) time. When analyzing an algorithm's time 
+            complexity, it's helpful to identify the input you're dealing with. 
+            In this case, it is the array to be searched. We want to know how long 
+            the algorithm takes to run relative to larger input sizes. We can 
+            represent the "size" of the input with the variable n for the length of 
+            the array. The worst case scenario is when the element we want to find 
+            is at the end of the array. That means we have to loop through every 
+            single element in the array (all n elements). Therefore, the time 
+            complexity of the algorithm is O(n).
+        </p>
+
+        <h2>Binary search</h2>
+
+        <p>
+            Although faster than linear/sequential search, binary search requires 
+            the array to be sorted beforehand. The reason for this is that the entire 
+            premise of this searching algorithm is to find the middle element of the 
+            array and compare it to the desired element. If the element comes before 
+            the middle element, we repeat the previous steps, except on the subarray 
+            from the low element to the middle one. If the desired element comes after 
+            the middle one, we look at the subarray from the middle element to the high 
+            element. Let's take a look at the code.
+        </p>
+
+        <pre>
+            <code class="language-java">public static int binarySearch(int val, int arr[]) {
+    int low = 0;
+    int high = arr.length-1;
+    int mid;
+            
+    while (low < high) {
+        mid = (low + high)/2;
+        
+        if (arr[mid] == val) {
+            return mid;
+        } else if (arr[mid] > val) {
+            // val comes before the middle element
+            high = mid - 1;
+        } else {
+            // val comes after the middle element
+            low = mid + 1;
+        }
+    }
+            
+    return -1; // element not found
+}</code>
+        </pre>
+
+        <p>
+            As you can see, we declare variables for the lower bound, upper bound and 
+            middle indexes of the array. Inside the while loop, we first calculate the 
+            middle index. Then, we look to see if it is equal to the value we are searching 
+            for. If yes, then great, we just return the index of mid. Otherwise, we have 
+            to look in one of the halves of the array. Since we know that the array is sorted, 
+            we know that if the value is less than the array's middle element, it is in the 
+            left half of the array. We set the upper bound to mid - 1 because we already know 
+            the value we're looking for is not at mid, so we want to search the array from the 
+            lower bound all the way to the middle index - 1. If the value we want isn't at the 
+            middle or lower bound of the array, it must be at the upper bound. That's why we 
+            adjust our lower bound to become the middle index + 1 (since we know val can't be 
+            at the middle index). This process keeps repeating until we've found the value or 
+            until the lower and upper indexes "overlap" (when low >= high). In this case, the 
+            value is not in the array, so we just return -1. Let's take a look at a sample case 
+            where we want to find the element 1 in the following array:
+        </p>
+
+        <pre><code>[1, 5, 11, 12, 14, 15, 17, 20]</code></pre>
+
+        <p>The table below shows the different variables at each iteration of the loop.</p>
+        
+        <table>
+            <tr>
+              <th>Iteration number</th>
+              <th><code>low</code></th>
+              <th><code>high</code></th>
+              <th><code>mid</code></th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>0</td>
+              <td>7</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>0</td>
+              <td>2</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+          </table>
+
+          <p>
+            As you can see, it took only 3 iterations in order to find the element. The array is of length 8, 
+            and log<sub>2</sub>(8). We use 2 as the base of the logarithm because we're splitting the array into 2 subarrays 
+            in each iteration. Knowing that the size of the array is n (or 8 in this case), we can conclude that 
+            the time complexity of the algorithm is O(log<sub>2</sub>(n)). Keep in mind that this is only an approximation - 
+            the exact number of iterations you have to go through depends on whether you round up or down when you 
+            calculate the middle index. This means that if you tried to search for 20 in the above scenario, it 
+            would actually take you 4 iterations to do so. Nevertheless when the input size becomes larger, 1 more 
+            iteration won't matter. The idea of big O notation is to deal with calculation time as inputs become larger.
+          </p>
+
+          <h2>Selection sort</h2>
+
+          <p>
+            Selection sort is a pretty intuitive method of sorting an array. You start by searching the entire array 
+            for the element that comes first in the array and put it at the beginning. Then, you repeat this process, 
+            except in the subarray excluding the element you just sorted. Once you reach the last element, you've sorted 
+            the array! Let's see how this is implemented in code.
+        </p>
+        
+        <pre>
+            <code class="language-java">public static void selectionSort(int[] arr) {
+    for (int i = 0; i < arr.length; i ++) {
+        int smallestIndex = i;
+        int temp;
+
+        // finding smallest element
+        for (int j = i; j < arr.length; j ++) {
+            if (arr[j] < arr[smallestIndex]) {
+                // assigning index of smallest element to smallestIndex
+                smallestIndex = j;
+            }
+        }
+
+        // swapping elements
+        temp = arr[i];
+        arr[i] = arr[smallestIndex]; // putting smallest index at the start of the subarray
+        arr[smallestIndex] = temp; // putting the element at the start of the subarray to where the smallest element used to be
+    }
+}</code>
+        </pre>
+
+        <p>
+            The code is mostly self explanatory. The inner loop finds the greatest element. The outer loop is 
+            responsible for swapping elements as well as for making sure that the inner loop doesn't iterate 
+            through the already sorted elements. This sorting method, although easy to implement, is pretty 
+            inefficient. In the worst case, it has to loop through each element (outer loop), and loop through 
+            the total elements - the number of iterations the outer loop has done (inner loop). In big O notation, 
+            we ignore constants (for an approximation). In this case, that means that we disregard the number of 
+            iterations that the outer loop has done when calculating the number of elements the inner loop loops 
+            through. This effectively means that we're looping through the array array.length * array.length times, 
+            or n * n, or n<sup>2</sup> times, giving us the time complexity of O(n<sup>2</sup>).
+        </p>
+
+        <h2>Insertion sort</h2>
+
+        <p>
+            Just like selection sort, insertion sort is an easy algorithm to understand and implement. 
+            Looking at each element of the array, we see if it's in the right order (if it comes before 
+            the previous). If yes, we move on to the next element. Otherwise, we continuously swap the 
+            previous element with the one we're currently on until it's in the right location. The code 
+            is below.
+        </p>
+
+        <pre>
+            <code class="language-java">public static void insertionSort(int[] arr) {
+    for (int i = 1; i < arr.length; i ++) {
+        int currentIndex = i; // index to keep track of where the current element is
+        for (int j = i-1; j >= 0; j --) {				
+            if (arr[j] < arr[currentIndex]) {
+                // elements are in the correct order
+                break;
+            } else {
+                // move current element to the left
+                int temp = arr[j];
+                arr[j] = arr[currentIndex];
+                arr[currentIndex] = temp;
+                currentIndex = j; // update the current element's index
+            }
+
+        }
+    }
+}</code>
+        </pre>
+
+        <p>
+            The outer for loop starts from the 2nd element in the array to avoid any IndexOutOfBounds 
+            exceptions. If the current element is in the right position (it comes after the previous 
+            one), then you leave it be. Otherwise, you continuously swap the current element with the 
+            one before it until it's in the correct position (the inner for loop). Make sure to update 
+            the position the current element the outer loop is at during each swap. Just like selection 
+            sort, this algorithm has a time complexity of O(n<sup>2</sup>), because we're looping through n-1 
+            elements in the outer loop and n-1-i elements in the inner loop. Removing constants, 
+            we loop through n * n, or n<sup>2</sup> elements in total.
+        </p>
+
+        <h2>Merge sort</h2>
+
+        <p>
+            Out of all the sorting algorithms, merge sort is the fastest one, but it is a little bit 
+            harder to understand. The foundation of this sorting algorithm is on the merge operation, 
+            where you take two already sorted arrays and merge them. To do this, simply compare the 
+            elements at the start of each array and put the smaller one in your sorted array. Continue 
+            doing this until you have a sorted array. It's that simple. The code for this is below.
+        </p>
+
+        <pre>
+            <code class="language-java">public static ArrayList<Integer> merge(ArrayList<Integer> arr1, ArrayList<Integer> arr2) {
+    int totalSize = arr1.size() + arr2.size(); // total initial size of both arrays
+
+    ArrayList<Integer> mergedArr = new ArrayList<Integer>();
+    
+    while(arr1.size() > 0 && arr2.size() > 0) {
+        // choosing the smallest element to add to the sorted array (smaller numbers come first)
+        if (arr1.get(0) < arr2.get(0)) {
+            mergedArr.add(arr1.remove(0));
+        } else {
+            mergedArr.add(arr2.remove(0));
+        }
+    }
+
+    // if all the elements have not been added yet, it means that one of the arraylists still has elements that have not been added to the sorted array
+    // since both arr1 and arr2 are ordered, we can just add the remaining elements to the sorted array
+    if (mergedArr.size() != totalSize) {
+        if (arr1.size() > 0) {
+            while (arr1.size() > 0) {
+                mergedArr.add(arr1.remove(0));
+            }
+        } else {
+            while (arr2.size() > 0) {
+                mergedArr.add(arr2.remove(0));
+            }
+        }
+    }
+
+    return mergedArr; // returns the fully merged and sorted array
+}</code>
+        </pre>
+
+        <p>
+            Now, why does this operation matter to us? Don't we have to actually sort the arrays before 
+            we can merge them? The answer to this question is... not really. You see, if arrays of size 
+            1 are considered sorted. Therefore, we can just merge multiple arrays of size 1 together to 
+            get a larger merged array, and merge the larger arrays together, and so on until we get our 
+            fully sorted array. However, we need to break down the larger array into groups of 1 first. 
+            To accomplish this, we will use <span><a href="./recursion.html">recursion</a></span>. We are also going to use arraylists, since they 
+            are easier to manipulate. Given an arraylist arr, we'll return the same arraylist, but sorted. 
+            Let's set up our method header. 
+        </p>
+
+        <pre>
+            <code class="language-java">public static ArrayList<Integer> mergeSort(ArrayList<Integer> arr)</code>
+        </pre>
+
+        <p>
+            We want to stop the recursive calls when our subarrays are of size 1, so we'll add the 
+            following if statement. This is our base case.
+        </p>
+        
+        <pre>
+            <code class="language-java">if (arr.size() == 1) {
+return arr;
+}</code>
+        </pre>
+
+        <p>Perfect. Now, we'll need to split the array into two parts.</p>
+
+        <pre>
+            <code class="language-java">ArrayList<Integer> left = new ArrayList<Integer>();
+ArrayList<Integer> right = new ArrayList<Integer>();
+
+for (int i = 0; i < arr.size(); i ++) {
+    if (i < arr.size() / 2) {
+        left.add(arr.get(i)); // store the first half of the arraylist
+    } else {
+        right.add(arr.get(i)); // store the second half of the arraylist
+    }
+}</code>
+        </pre>
+
+        <p>
+            Finally, we can call mergeSort on the left and right arraylists and merge the two halves. 
+            Why does this work? Well, this process will keep repeating until we reach our base case of 
+            the arraylist's size being 1. Then, the size 1 arraylist will be returned, and the merge 
+            method can begin merging the two returned arraylists. When the merge is complete, it returns 
+            a larger sorted arraylist. This in turn gets returned to the mergeSort method that called the 
+            merge method, and so on and so forth until the whole array is sorted. In all cases, merge 
+            sort needs to divide the array repeatedly into two halves. In an arraylist with 8 elements, 
+            the array is divided into groups of 4, 2, and 1 (log<sub>2</sub>(8) = 3). For each of these groups, we 
+            need to merge them. This takes O(n) time per group, since we're iterating through each element 
+            in that group (in the worst case scenario). Therefore, this requires 8*3 = 24 operations to 
+            sort 8 elements resulting in a time complexity of O(n*log(n)).
+        </p>
     </div>
 </body>
 </html>

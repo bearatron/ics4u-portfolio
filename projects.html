@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/project-styles.css">
+    <!-- jQuery minified CDN from https://releases.jquery.com/ -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    
+    <title>Projects</title>
+</head>
+<body>
+    <div id="navigation"></div>
+    <!-- Script from jQuery to load navbar from external file -->
+    <script>
+        $("#navigation").load("./nav.html");
+    </script>
+
+    <div class="content-container">
+        <h1>Projects</h1>
+        <div class="project-card-container">
+            <div class="project-card">
+                <img src="./assets/cookease.png" alt="cookease project screenshot" class="project-image">
+                <h2>CookEase</h2>
+                <p>
+                    During LyonHacks III, I create (along with three other students), 
+                    created a multi-platform application using Flutter. Our app was 
+                    named CookEase and it helped the user find recipes based on their 
+                    diet, food in their kitchen, preferred cuisines, and dietary 
+                    restrictions. We only had two and a half days to make this, and 
+                    we were really proud of what we were able to accomplish, as none of 
+                    us had any knowledge of the Flutter framework. Personally, I gained 
+                    two key pieces of knowledge including Flutter UI design and 
+                    how to make API calls in Dart, both of which will be extremely useful 
+                    if I decide to develop apps with Flutter in the future.
+                </p>
+            </div>
+            <div class="project-card">
+                <img src="./assets/chatapp.png" alt="chat app project screenshot" class="project-image">
+                <h2>Chat App</h2>
+                <p>
+                    Over the summer of 2022, I decided to embark on my first real project. At 
+                    this point, I was only starting to learn Python and wanted to work on 
+                    something that striked a balance between fuelling my curiosity while not 
+                    being frustratingly difficult to accomplish. I decided to go with making an 
+                    online web based chat app, primarily inspired by Discord. I learned how to use 
+                    the Python library Flask for basic back end to connect users to the right chat 
+                    room based on a unique URL. 
+                </p>
+            </div>
+            <!-- <div class="project-card">
+                <h2>Title</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus porro incidunt commodi tempora autem facilis laudantium aliquam natus accusantium perspiciatis dicta, sunt eaque repudiandae eveniet perferendis ullam pariatur. Repellat, enim.</p>
+            </div>
+            <div class="project-card">
+                <h2>Title</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus porro incidunt commodi tempora autem facilis laudantium aliquam natus accusantium perspiciatis dicta, sunt eaque repudiandae eveniet perferendis ullam pariatur. Repellat, enim.</p>
+            </div> -->
+        </div>
+    </div>
+    
+</body>
+</html>

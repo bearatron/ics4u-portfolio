@@ -25,6 +25,41 @@
 
     <div class="content-container">
         <h1>Recursion</h1>
+
+        <p>
+            The concept of recursion is a method calling itself repeatedly. This method is known as 
+            a recursive method. At first glance, this might seem mundane and unhelpful, but it is an 
+            important skill a programmer should know. The simplest way to demonstrate this is with the 
+            fibonacci sequence. Let's say that you wanted to find the nth number in the sequence. How 
+            would you do this? Well, we know that the nth fibonacci number is equal to the previous 
+            two fibonacci numbers added together. We also know that the first two numbers in the 
+            sequence are 1 and 1 (the "zeroth" fibonacci number being 0). Knowing this, we can 
+            calculate the nth fibonacci number using recursion.
+        </p>
+
+        <pre>
+            <code class="language-java">public static int fib(int n) {
+    if (n == 1 || n == 2) {
+        return 1;
+    }
+    return fib(n-1) + fib(n-2);
+}</code>
+        </pre>
+
+        <p>
+            Notice how we have a condition to stop our recursive calls (calls to our recursive method), 
+            and this is really important, as discussed in the next section.
+        </p>
+
+        <h2>Common Mistake</h2>
+
+        <p>
+            A base case is the point at which the method stops recursive calls by returning some value. 
+            The reason why this is important is the same as the reason why you need the boolean expression 
+            of a while loop to eventually evaluate to false. An infinite loop can occur in both while loops 
+            and recursive calls as well, although you'll get a stack overflow error if you didn't specify 
+            a base case or if your base case never evaluates to true.
+        </p>
     </div>
 </body>
 </html>
