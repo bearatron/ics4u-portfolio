@@ -158,7 +158,7 @@ System.out.println(myHouse.getSquareFeet());</code>
         Now let's look at a more sophisticated way we can make use of object oriented 
         programming called inheritance. Just like you inherit your genes from your parents, 
         classes can also inherit attributes and behaviors from other classes. The parent class 
-        is also called the super class and the child class is called the sub class. Let's see 
+        is also called the superclass and the child class is called the subclass. Let's see 
         how this looks in code.
     </p>
 
@@ -189,8 +189,124 @@ public class Child extends Parent {
     </pre>
 
     <p>
-        As you can see, the class constructor of Child calls its superclass (Parent) constructor.
+        As you can see, the class constructor of Child calls its superclass (Parent) constructor. 
+        Note that the call to super must be the first line in your constructor. Since the subclass 
+        extends the superclass, it inherits all the methods in the superclass. Also, it means that 
+        you can declare a variable of the subclass type and call the superclass constructor. An 
+        example of both of these is shown below.
     </p>
+
+    <pre>
+        <code class="language-java">public static void main(String[] args) {
+    Child a = new Parent(12, 80, 180, "black");
+    a.displayHairColor();
+    Parent b = new Child(12, 80, 180, "black"); // error
+}</code>
+    </pre>
+
+    <p>
+        As you can see, the variable a is declared as type Child, but initialized as type Parent. 
+        This is because a child has an "is-a" relationship with its parent (a child inherits from 
+        its parent). The opposite is not true; a parent is not a child as a parent cannot inherit 
+        from its children. Because the child inherits all methods from the parent, it can call the 
+        displayHairColor() method as well.
+    </p>
+
+    <h2>
+        Abstract classes and interfaces
+    </h2>
+
+    <p>
+        Sometimes, certain classes share similar methods with each other, but they implement 
+        them differently. These methods are known as abstract methods. They are declared 
+        differently in abstract classes compared to interfaces. Abstract classes are similar 
+        to regular classes, except they can have abstract methods. Take a look at a sample 
+        shape abstract class.
+    </p>
+
+    <pre>
+        <code class="language-java">public abstract class Shape {
+    String name;
+
+    public Shape(String n) {
+        name = n;
+}
+
+public abstract double calcArea();
+    public String getName() {
+        return name;
+    }
+}</code>
+    </pre>
+
+    <p>
+        You can see that the keyword abstract appears between the public and class 
+        keywords. Also, the calcArea() method header is shown. You can see that since 
+        this is an abstract method, you don't need to have curly braces, instead you 
+        just end the line with a semicolon. This means that subsequent children of the 
+        Shape class have to implement the calcArea() method. An example of this is shown 
+        below.
+    </p>
+
+    <pre>
+        <code class="language-java">public class Square extends Shape {
+    double width;
+
+    public Square(String n, double w) {
+        super(n);
+        width = w;
+    }
+
+    public double calcArea() {
+        return width*width;
+    }
+}</code>
+    </pre>
+
+    <p>
+        Notice how the calcArea() method in the Square class has the same method 
+        header - its access modifier and return type are exactly the same. Just 
+        like regular classes, you can only extend one abstract class. Now let's 
+        take a look at an interface. An interface is essentially an abstract class 
+        that consists only of final static variables and public abstract methods. 
+        A sample interface and its implementation is shown below.
+    </p>
+
+    <pre>
+        <code class="language-java">public interface Shape {
+    double calcArea();
+    String getName();
+    String printShape():
+}
+                
+class Square implements Shape {
+    double width;
+    String name;
+    
+    public Square(String n, double w) {
+        name = n;
+        width = w;
+    }
+
+    public double calcArea() {
+        return width*width;
+    }
+
+    public String getName() {
+        return name;
+    }
+    
+    public String printShape() {
+        System.out.println("Shape " + getName() + " has an area of " + calcArea());
+    }
+    
+}</code>
+    </pre>
+
+    <p>
+        The advantage of interfaces compared to abstract methods is that you can implement multiple of them in your program.
+    </p>
+
     </div>
 </body>
 </html>

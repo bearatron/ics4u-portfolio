@@ -59,8 +59,10 @@ th, td {
 }
 
 nav {
-    top: 0;
     position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    align-self: flex-start;
     z-index: 99;
     background-color: rgb(var(--bg-color-r), var(--bg-color-g), var(--bg-color-b));
     width: 100%;
